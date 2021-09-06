@@ -1,9 +1,9 @@
 module GreyDecision
 
-include("greynumber.jl")
+include("./greynumber.jl")
+include("./utility.jl")
 
-export GreyNumber
-export whitenizate
-export inv
+export GreyNumbers
+export Utility
 
 end # module GreyDecision

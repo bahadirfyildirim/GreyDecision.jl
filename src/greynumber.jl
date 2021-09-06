@@ -2,6 +2,7 @@
 Liu S., Yang Y., Forrest J. (2017) Grey Numbers and Their Operations. In: Grey Data Analysis. 
 Computational Risk Management. Springer, Singapore. https://doi.org/10.1007/978-981-10-1841-1_3
 """
+module GreyNumbers 
 
 struct GreyNumber{T<:Real}
     a::T
@@ -9,6 +10,9 @@ struct GreyNumber{T<:Real}
 end
 
 GreyNumber()::GreyNumber{Float64} = GreyNumber(0.0, 0.0)
+
+Base.length(g::GreyNumber) = 2
+
 
 function whitenizate(g::GreyNumber; t::Float64 = 0.5)::Float64
     @assert 0.0 <= t <= 1.0
@@ -122,3 +126,23 @@ end
 function Base.iszero(g::GreyNumber)::Bool
     return iszero(g.a) && iszero(g.b)
 end
+
+function Base.sum(g::GreyNumber{T})::T where {T <: Number}
+    return g.a + g.b
+end
+
+function Base.eltype(g::GreyNumber)::Type
+    return eltype(g.a)
+end
+
+function Base.iterate(g::GreyNumber, state=1)
+    if state == 1
+        (g.a, state + 1)
+    elseif  state == 2
+        (g.b, state + 1)
+    else
+        nothing 
+    end
+end 
+
+end # end of module GreyNumbers
