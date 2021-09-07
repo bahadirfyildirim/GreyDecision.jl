@@ -23,6 +23,7 @@ end
         @test length(result) == 2
         @test result[1] == GreyNumber(8, 11)
         @test result[2] == GreyNumber(80, 110)
+        @test result == Utility.colsums(greys)
     end
     
     @testset "Apply minimum to columns" begin
@@ -35,6 +36,7 @@ end
         @test length(result) == 2
         @test result[1] == GreyNumber(1, 2)
         @test result[2] == GreyNumber(10, 20)
+        @test result == Utility.colmins(greys)
     end
     
      @testset "Apply maximum to columns" begin
@@ -47,7 +49,22 @@ end
         @test length(result) == 2
         @test result[1] == GreyNumber(4, 5)
         @test result[2] == GreyNumber(40, 50)
-    end
+        @test result == Utility.colmaxs(greys)
+     end
+
+     @testset "Apply mean to columns" begin
+        greys = [
+            GreyNumber(1, 2) GreyNumber(10, 20);
+            GreyNumber(3, 4) GreyNumber(30, 40);
+            GreyNumber(4, 5) GreyNumber(40, 50);
+        ]
+        result = Utility.apply_columns(Utility.mean, greys)
+        @test length(result) == 2
+        @test result[1] == GreyNumber(8/3, 11/3)
+        @test result[2] == GreyNumber(80/3, 110/3)
+        @test result == Utility.colmeans(greys)
+     end
+
 end
 
 
@@ -63,6 +80,7 @@ end
         @test result[1] == GreyNumber(11, 22)
         @test result[2] == GreyNumber(33, 44)
         @test result[3] == GreyNumber(44, 55)
+        @test result == Utility.rowsums(greys)
     end
 
      @testset "Apply minimum to rows" begin
@@ -75,7 +93,8 @@ end
         @test length(result) == 3
         @test result[1] == GreyNumber(1, 2)
         @test result[2] == GreyNumber(3, 4)
-        @test result[3] == GreyNumber(4, 5) 
+        @test result[3] == GreyNumber(4, 5)
+        @test result == Utility.rowmins(greys) 
     end
     
      @testset "Apply maximum to rows" begin
@@ -88,6 +107,21 @@ end
         @test length(result) == 3
         @test result[1] == GreyNumber(10, 20)
         @test result[2] == GreyNumber(30, 40)
-        @test result[3] == GreyNumber(40, 50) 
-    end
+        @test result[3] == GreyNumber(40, 50)
+        @test result == Utility.rowmaxs(greys) 
+     end
+
+     @testset "Apply mean to rows" begin
+        greys = [
+            GreyNumber(1, 2) GreyNumber(10, 20);
+            GreyNumber(3, 4) GreyNumber(30, 40);
+            GreyNumber(4, 5) GreyNumber(40, 50);
+        ]
+        result = Utility.apply_rows(Utility.mean, greys)
+        @test length(result) == 3
+        @test result[1] == GreyNumber(11/2, 22/2)
+        @test result[2] == GreyNumber(33/2, 44/2)
+        @test result[3] == GreyNumber(44/2, 55/2) 
+        @test result == Utility.rowmeans(greys)
+     end
 end
