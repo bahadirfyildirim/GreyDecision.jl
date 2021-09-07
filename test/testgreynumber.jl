@@ -228,6 +228,12 @@ import GreyDecision.GreyNumbers.GreyNumber
         @test iszero(GreyNumber(0.0, 0.0))
     end
 
+    @testset "isone" begin
+        @test isone(GreyNumber(1, 1))
+        @test isone(GreyNumber(1.0, 1.0))
+        @test !isone(GreyNumber())
+    end
+
     @testset "elttype" begin
         @test eltype(GreyNumber(0.0, 0.0)) == Float64
         @test eltype(GreyNumber(0, 0)) == Int64

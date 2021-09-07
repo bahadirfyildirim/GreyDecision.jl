@@ -127,6 +127,11 @@ function Base.iszero(g::GreyNumber)::Bool
     return iszero(g.a) && iszero(g.b)
 end
 
+function Base.isone(g::GreyNumber)::Bool
+    return isone(g.a) && isone(g.b)
+end
+                               
+
 function Base.sum(g::GreyNumber{T})::T where {T <: Number}
     return g.a + g.b
 end
