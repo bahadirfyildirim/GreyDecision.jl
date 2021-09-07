@@ -258,4 +258,50 @@ import GreyDecision.GreyNumbers.GreyNumber
         @test sum(GreyNumber(0.0, 0.0)) == 0.0
         @test sum(GreyNumber(3.0, 4.0)) == 7.0
     end
-end
+
+    @testset "getindex (g[i])" begin
+        @testset "Integers" begin
+            g = GreyNumber(7, 8)
+            @test g[1] isa Int64
+            @test g[2] isa Int64
+            @test g[1] == 7
+            @test g[2] == 8
+        end
+
+        @testset "Floats" begin
+            g = GreyNumber(7.0, 8.0)
+            @test g[1] isa Float64
+            @test g[2] isa Float64
+            @test g[1] == 7.0
+            @test g[2] == 8.0
+        end
+    end
+
+    @testset "first" begin
+        @testset "Integer" begin
+            g = GreyNumber(7, 8)
+            @test g[1] isa Int64
+            @test first(g) == 7
+        end
+
+        @testset "Float" begin
+            g = GreyNumber(7.0, 8.0)
+            @test g[1] isa Float64
+            @test first(g) == 7.0
+        end
+    end
+
+
+    @testset "last" begin
+        @testset "Integer" begin
+            g = GreyNumber(7, 9)
+            @test last(g) == 9
+        end
+
+        @testset "Floats" begin
+            g = GreyNumber(7.0, 9.0)
+            @test last(g) == 9.0
+        end
+    end
+    
+end # End of testset GreyNumbers

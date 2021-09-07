@@ -171,5 +171,20 @@ function Base.abs(g::GreyNumber)::GreyNumber
     return GreyNumber(abs(g.a), abs(g.b))
 end
 
+function Base.getindex(g::GreyNumber{T}, index::Int64)::T where T
+    @assert index == 1 || index == 2
+    if index == 1
+        g.a
+    else
+        g.b
+    end
+end
+
+function Base.last(g::GreyNumber{T})::T where T
+    return g.b
+end
+
+
+
 
 end # end of module GreyNumbers
