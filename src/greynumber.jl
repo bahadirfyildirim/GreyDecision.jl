@@ -130,6 +130,16 @@ end
 function Base.isone(g::GreyNumber)::Bool
     return isone(g.a) && isone(g.b)
 end
+
+function Base.iseven(g::GreyNumber)::Bool
+    @assert eltype(g.a) <: Int
+    return iseven(g.a) && iseven(g.b)
+end
+
+function Base.isodd(g::GreyNumber)::Bool
+    @assert eltype(g.a) <: Int
+    return isodd(g.a) && isodd(g.b)
+end
                                
 
 function Base.sum(g::GreyNumber{T})::T where {T <: Number}

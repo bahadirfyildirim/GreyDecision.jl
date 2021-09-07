@@ -234,6 +234,19 @@ import GreyDecision.GreyNumbers.GreyNumber
         @test !isone(GreyNumber())
     end
 
+    @testset "iseven" begin
+        # Base.iseven is defined for integers
+        @test_throws AssertionError iseven(GreyNumber(2.0, 4.0))
+        @test iseven(GreyNumber(2, 4))
+    end
+
+    @testset "isodd" begin
+        # Base.isodd is defined for integers
+        @test_throws AssertionError isodd(GreyNumber(1.0, 3.0))
+        @test isodd(GreyNumber(1, 3))
+    end
+    
+
     @testset "elttype" begin
         @test eltype(GreyNumber(0.0, 0.0)) == Float64
         @test eltype(GreyNumber(0, 0)) == Int64
