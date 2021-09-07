@@ -69,7 +69,7 @@ function Base.zeros(::Type{GreyNumber}, n::Int64, m::Int64)::Array{GreyNumber, 2
     gs = Array{GreyNumber{Float64}, 2}(undef, n, m)
     for i in 1:n
         for j in 1:m
-            gs[i] = GreyNumber(0.0, 0.0)
+            gs[i, j] = GreyNumber(0.0, 0.0)
         end
     end
     return gs
