@@ -7,7 +7,10 @@ module GreyNumbers
 struct GreyNumber{T<:Real}
     a::T
     b::T
+    GreyNumber{T}(x::T, y::T) where {T <: Real} = new{T}(min(x, y), max(x, y))
 end
+
+GreyNumber(x::T, y::T) where {T<:Real} = GreyNumber{T}(x,y)
 
 GreyNumber()::GreyNumber{Float64} = GreyNumber(0.0, 0.0)
 

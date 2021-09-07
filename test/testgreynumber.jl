@@ -197,7 +197,7 @@ import GreyDecision.GreyNumbers.GreyNumber
 
     @testset "==" begin
         @test GreyNumber(4, 5) == GreyNumber(4, 5)
-        @test GreyNumber(4, 5) != GreyNumber(5, 4)
+        @test GreyNumber(4, 5) != GreyNumber(4, 2)
     end
 
     @testset "min" begin
