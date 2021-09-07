@@ -150,4 +150,15 @@ end
         @test result[3] == GreyNumber(44/2, 55/2) 
         @test result == Utility.rowmeans(greys)
      end
+
+    @testset "isvalid" begin
+        @test isvalid(GreyNumber())
+        @test isvalid(GreyNumber(7, 8))
+        # if lower bound is not less or equal
+        # than the upper bound, the type
+        # constructor automatically replace
+        # them to make the number valid.
+        @test isvalid(GreyNumber(8, 7))
+    end
+    
 end

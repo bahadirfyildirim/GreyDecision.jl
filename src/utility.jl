@@ -79,6 +79,9 @@ function Base.zeros(::Type{GreyNumber}, t::Tuple{Int64, Int64})::Array{GreyNumbe
     zeros(GreyNumber, first(t), last(t))
 end
 
+function Base.isvalid(g::GreyNumber)::Bool
+    return g.a <= g.b
+end
 
                                        
 
