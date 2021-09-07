@@ -160,6 +160,24 @@ import GreyDecision.GreyNumbers.GreyNumber
         @test gs.a == 6.0
         @test gs.b == 10.0
     end
+
+    @testset "abs" begin
+        @testset "all positive" begin
+            g = GreyNumber(4, 5)
+            gabs = abs(g)
+            @test gabs isa GreyNumber
+            @test gabs == g
+        end
+
+        @testset "all negative" begin
+            g = GreyNumber(-4, -5)
+            gabs = abs(g)
+            @test gabs isa GreyNumber
+            @test gabs.a == 4
+            @test gabs.b == 5
+        end
+    end
+    
     
 
     @testset "< and >" begin

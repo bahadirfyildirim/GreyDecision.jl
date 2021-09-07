@@ -149,4 +149,9 @@ function Base.sqrt(g::GreyNumber)::GreyNumber
     return g^0.5
 end
 
+function Base.abs(g::GreyNumber)::GreyNumber
+    return GreyNumber(abs(g.a), abs(g.b))
+end
+
+
 end # end of module GreyNumbers
