@@ -160,5 +160,14 @@ end
         # them to make the number valid.
         @test isvalid(GreyNumber(8, 7))
     end
+
+    @testset "convert" begin
+        g = GreyNumber(2, 5)
+        arr = convert(Array{Float64, 1}, g)
+        @test arr isa Array{Float64, 1}
+        @test arr[1] == 2.0
+        @test arr[2] == 5.0
+    end
+    
     
 end

@@ -83,6 +83,14 @@ function Base.isvalid(g::GreyNumber)::Bool
     return g.a <= g.b
 end
 
+
+function Base.convert(::Type{Array{T, 1}}, g::GreyNumber)::Array{T, 1} where T
+    arr = Array{T, 1}(undef, 2)
+    arr[1] = min(g.a, g.b)
+    arr[2] = max(g.a, g.b)
+    return arr
+end
+
                                        
 
 end # end of module Utility
