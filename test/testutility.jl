@@ -11,3 +11,33 @@ import GreyDecision.GreyNumbers: GreyNumber
             GreyNumber(0.0, 1.0)) == 1.0        
     end
 end
+
+@testset "Apply columns" begin
+    @testset "Apply sum to columns" begin
+        greys = [
+            GreyNumber(1, 2) GreyNumber(10, 20);
+            GreyNumber(3, 4) GreyNumber(30, 40);
+            GreyNumber(4, 5) GreyNumber(40, 50);
+        ]
+        result = Utility.apply_columns(sum, greys)
+        @test length(result) == 2
+        @test result[1] == GreyNumber(8, 11)
+        @test result[2] == GreyNumber(80, 110)
+    end
+end
+
+
+@testset "Apply rows" begin
+    @testset "Apply sum to rows" begin
+        greys = [
+            GreyNumber(1, 2) GreyNumber(10, 20);
+            GreyNumber(3, 4) GreyNumber(30, 40);
+            GreyNumber(4, 5) GreyNumber(40, 50);
+        ]
+        result = Utility.apply_rows(sum, greys)
+        @test length(result) == 3
+        @test result[1] == GreyNumber(11, 22)
+        @test result[2] == GreyNumber(33, 44)
+        @test result[3] == GreyNumber(44, 55)
+    end
+end

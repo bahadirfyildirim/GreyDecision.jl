@@ -13,4 +13,15 @@ function euclidean(v1::GreyNumber{T})::Float64 where T <: Number
     return euclidean(v1, v2)
 end
 
+function apply_columns(f::Function, data::Array{GreyNumber{T},2}) where T <: Real
+    _, p = size(data)
+    return [f(data[:,i]) for i in 1:p]
+end
+
+function apply_rows(f::Function, data::Array{GreyNumber{T},2}) where T <: Real
+    n, _ = size(data)
+    return [f(data[i,:]) for i in 1:n]
+end
+
+
 end # end of module Utility
