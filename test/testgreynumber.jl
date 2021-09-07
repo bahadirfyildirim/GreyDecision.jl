@@ -153,6 +153,15 @@ import GreyDecision.GreyNumbers.GreyNumber
         end
     end
 
+    @testset "sqrt" begin
+        g = GreyNumber(36, 100)
+        gs = sqrt(g)
+        @test gs isa GreyNumber
+        @test gs.a == 6.0
+        @test gs.b == 10.0
+    end
+    
+
     @testset "< and >" begin
         @test GreyNumber(4, 5) < GreyNumber(7, 8)
         @test GreyNumber(4, 5) < GreyNumber(7, 10)

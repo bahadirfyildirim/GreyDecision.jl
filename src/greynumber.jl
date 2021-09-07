@@ -145,4 +145,8 @@ function Base.iterate(g::GreyNumber, state=1)
     end
 end 
 
+function Base.sqrt(g::GreyNumber)::GreyNumber
+    return g^0.5
+end
+
 end # end of module GreyNumbers
