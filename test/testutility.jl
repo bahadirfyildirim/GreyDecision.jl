@@ -1,6 +1,32 @@
 import GreyDecision.Utility
 import GreyDecision.GreyNumbers: GreyNumber
 
+@testset "zeros" begin
+    @testset "zeros vector" begin
+        z = zeros(GreyNumber, 10)
+        g = z[1]
+        @test length(z) == 10
+        @test g isa GreyNumber
+        @test g.a isa Float64
+        @test g.b isa Float64
+    end
+
+    @testset "zeros matrix" begin
+        z = zeros(GreyNumber, 10, 3)
+        @test size(z) == (10, 3)
+        @test z isa Matrix
+        @test z[1, 1] == GreyNumber(0.0, 0.0)
+    end
+
+    @testset "zeros matrix with tuple" begin
+        z = zeros(GreyNumber, (20, 2))
+        @test size(z) == (20, 2)
+        @test z isa Matrix
+        @test z[1, 1] == GreyNumber(0.0, 0.0)
+    end
+    
+end
+
 @testset "Euclidean distance" begin
     @testset "Distance to origin" begin
         @test Utility.euclidean(GreyNumber()) == 0.0        
