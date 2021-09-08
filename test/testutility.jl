@@ -4,7 +4,10 @@ import GreyDecision.GreyNumbers: GreyNumber
 @testset "zeros" begin
     @testset "zero" begin
         @test zero(GreyNumber{Int64}) == GreyNumber(0, 0)
+        @test zero(GreyNumber(0, 0)) == GreyNumber(0, 0)
+        
         @test zero(GreyNumber{Float64}) == GreyNumber(0.0, 0.0)
+        @test zero(GreyNumber(0.0, 0.0)) == GreyNumber(0.0, 0.0)
     end
     
     @testset "zeros vector" begin
