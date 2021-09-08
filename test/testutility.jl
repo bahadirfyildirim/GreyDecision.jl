@@ -150,24 +150,37 @@ end
         @test result[3] == GreyNumber(44/2, 55/2) 
         @test result == Utility.rowmeans(greys)
      end
+ end
 
-    @testset "isvalid" begin
-        @test isvalid(GreyNumber())
-        @test isvalid(GreyNumber(7, 8))
-        # if lower bound is not less or equal
-        # than the upper bound, the type
-        # constructor automatically replace
-        # them to make the number valid.
-        @test isvalid(GreyNumber(8, 7))
-    end
+@testset "isvalid" begin
+    @test isvalid(GreyNumber())
+    @test isvalid(GreyNumber(7, 8))
+    # if lower bound is not less or equal
+    # than the upper bound, the type
+    # constructor automatically replace
+    # them to make the number valid.
+    @test isvalid(GreyNumber(8, 7))
+end
 
-    @testset "convert" begin
-        g = GreyNumber(2, 5)
-        arr = convert(Array{Float64, 1}, g)
-        @test arr isa Array{Float64, 1}
-        @test arr[1] == 2.0
-        @test arr[2] == 5.0
-    end
-    
-    
+@testset "convert" begin
+    g = GreyNumber(2, 5)
+    arr = convert(Array{Float64, 1}, g)
+    @test arr isa Array{Float64, 1}
+    @test arr[1] == 2.0
+    @test arr[2] == 5.0
+end
+
+
+@testset "Reverse minimum & maximum array" begin
+    fns = [minimum, maximum, maximum, minimum, maximum]
+    revfns = [maximum, minimum, minimum, maximum, minimum]
+    @test Utility.reverseminmax(fns) == revfns 
+    @test Utility.reverseminmax(revfns) == fns 
+end
+
+@testset "Make Array of minimum and maximum" begin
+    result1 = Utility.makeminmax([maximum, maximum, maximum, maximum])
+    @test typeof(result1) == Array{Function,1}
+    @test typeof(result1[1]([1.0, 2.0, 3.0])) == Float64 
+    @test result1[1]([1.0, 2.0, 3.0]) == 3.0 
 end
