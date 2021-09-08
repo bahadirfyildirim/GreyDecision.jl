@@ -57,6 +57,20 @@ function rowmeans(data::Array{GreyNumber{T}, 2}) where T <: Real
     return apply_rows(mean, data)
 end
 
+function Base.zero(::Type{GreyNumber{Float64}})
+    return GreyNumber(0.0, 0.0)
+end
+
+function Base.zero(g::GreyNumber{T})::GreyNumber{T} where T
+    return GreyNumber(zero(T), zero(T))
+end
+
+
+function Base.zero(::Type{GreyNumber{Int64}})
+    return GreyNumber(0, 0)
+end
+                   
+
 function Base.zeros(::Type{GreyNumber}, n::Int64)::Array{GreyNumber, 1}
     gs = Array{GreyNumber{Float64}, 1}(undef, n)
     for i in 1:n
@@ -101,6 +115,13 @@ function makeminmax(fns::Array{K,1} where K)::Array{Function,1}
     return convert(Array{Function,1}, fns)
 end
 
-                                       
+function weightize(data::Array{GreyNumber{T}, 2}, w::Array{Float64, 1})::Array{GreyNumber, 2} where T
+    n, p = size(data)
+    newdata = Array{GreyNumber{Float64}, 2}(undef, n, p)
+    for i in 1:p
+        newdata[:, i] = w[i] .* data[:, i]
+    end
+    return newdata
+end                                       
 
 end # end of module Utility

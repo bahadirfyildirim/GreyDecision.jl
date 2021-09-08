@@ -2,6 +2,11 @@ import GreyDecision.Utility
 import GreyDecision.GreyNumbers: GreyNumber
 
 @testset "zeros" begin
+    @testset "zero" begin
+        @test zero(GreyNumber{Int64}) == GreyNumber(0, 0)
+        @test zero(GreyNumber{Float64}) == GreyNumber(0.0, 0.0)
+    end
+    
     @testset "zeros vector" begin
         z = zeros(GreyNumber, 10)
         g = z[1]
@@ -183,4 +188,36 @@ end
     @test typeof(result1) == Array{Function,1}
     @test typeof(result1[1]([1.0, 2.0, 3.0])) == Float64 
     @test result1[1]([1.0, 2.0, 3.0]) == 3.0 
+end
+
+@testset "Product weight vector with columns of matrix" begin
+    data = [
+        GreyNumber(1.0, 2.0) GreyNumber(2.0, 3.0) GreyNumber(3.0, 4.0);
+        GreyNumber(1.0, 2.0) GreyNumber(2.0, 3.0) GreyNumber(3.0, 4.0);
+        GreyNumber(1.0, 2.0) GreyNumber(2.0, 3.0) GreyNumber(3.0, 4.0)
+    ]
+    w = [0.5, 10, 100]
+    result = Utility.weightize(data,  w)
+
+    @test size(result) == (3, 3)
+    @test typeof(result) == Array{GreyNumber, 2}
+    
+    @test result[:,1] == [
+        GreyNumber(0.5, 1.0),
+        GreyNumber(0.5, 1.0),
+        GreyNumber(0.5, 1.0)
+    ]
+
+    @test result[:,2] == [
+        GreyNumber(2.0 * 10, 3.0 * 10),
+        GreyNumber(2.0 * 10, 3.0 * 10),
+        GreyNumber(2.0 * 10, 3.0 * 10)
+    ]
+
+     @test result[:,3] == [
+        GreyNumber(3.0 * 100, 4.0 * 100),
+        GreyNumber(3.0 * 100, 4.0 * 100),
+        GreyNumber(3.0 * 100, 4.0 * 100)
+    ]
+
 end
