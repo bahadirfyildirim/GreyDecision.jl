@@ -26,6 +26,15 @@ function Base.:+(g1::GreyNumber, g2::GreyNumber)::GreyNumber
     return GreyNumber(g1.a + g2.a, g1.b + g2.b)
 end
 
+function Base.:+(g::GreyNumber{T}, k::T)::GreyNumber{T} where T <: Real
+    return GreyNumber(g.a + k, g.b + k)
+end
+
+function Base.:+(k::T, g::GreyNumber{T})::GreyNumber{T} where T <: Real
+    return g + k
+end
+
+
 function Base.:-(g::GreyNumber)::GreyNumber
     minusone = -1 * one(g.a)
     return GreyNumber(minusone * g.b, minusone * g.a)
@@ -34,6 +43,15 @@ end
 function Base.:-(g1::GreyNumber, g2::GreyNumber)::GreyNumber 
     return GreyNumber(g1.a - g2.b, g1.b - g2.a)
 end
+
+function Base.:-(g::GreyNumber{T}, k::T)::GreyNumber{T} where T <: Real
+    return g - GreyNumber(k, k)
+end
+
+function Base.:-(k::T, g::GreyNumber{T})::GreyNumber{T} where T <: Real
+    return GreyNumber(k, k) - g
+end
+
 
 function Base.:*(g1::GreyNumber, g2::GreyNumber)::GreyNumber
     return GreyNumber(

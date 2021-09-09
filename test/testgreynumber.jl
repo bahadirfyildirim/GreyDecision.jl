@@ -27,12 +27,25 @@ import GreyDecision.GreyNumbers.GreyNumber
     end
 
     @testset "+" begin
-        g1 = GreyNumber(1, 2)
-        g2 = GreyNumber(5, 10)
-        greysum = g1 + g2
-        @test greysum isa GreyNumber
-        @test greysum.a == 6
-        @test greysum.b == 12
+        @testset "Grey + Grey" begin
+            g1 = GreyNumber(1, 2)
+            g2 = GreyNumber(5, 10)
+            greysum = g1 + g2
+            @test greysum isa GreyNumber
+            @test greysum.a == 6
+            @test greysum.b == 12
+        end
+        @testset "Grey + scalar" begin
+            g1 = GreyNumber(1, 2)
+            k = 3
+            result  = g1 + k
+            result2 = k  + g1
+            @test result isa GreyNumber
+            @test result2 isa GreyNumber
+            @test result2 == result
+            @test result.a == 4
+            @test result.b == 5
+        end
     end
 
     @testset "Additive inverse (negatition)" begin
@@ -45,18 +58,35 @@ import GreyDecision.GreyNumbers.GreyNumber
     end
 
     @testset "Substraction" begin
-        g1 = GreyNumber(10, 20)
-        g2 = GreyNumber(1, 2)
-        gdiff1 = g1 - g2
-        gdiff2 = g2 - g1
-        @test gdiff1 isa GreyNumber
-        @test gdiff2 isa GreyNumber
-        @test gdiff1.a <= gdiff1.b
-        @test gdiff2.a <= gdiff2.b
-        @test gdiff1.a == 8
-        @test gdiff1.b == 19
-        @test gdiff2.a == -19
-        @test gdiff2.b == -8
+        @testset "Grey - Grey" begin
+            g1 = GreyNumber(10, 20)
+            g2 = GreyNumber(1, 2)
+            gdiff1 = g1 - g2
+            gdiff2 = g2 - g1
+            @test gdiff1 isa GreyNumber
+            @test gdiff2 isa GreyNumber
+            @test gdiff1.a <= gdiff1.b
+            @test gdiff2.a <= gdiff2.b
+            @test gdiff1.a == 8
+            @test gdiff1.b == 19
+            @test gdiff2.a == -19
+            @test gdiff2.b == -8
+        end
+        @testset "Grey - scalar" begin
+            g = GreyNumber(10, 20)
+            k = 3
+            result  = g - k    
+            @test result isa GreyNumber
+            @test result.a == 7
+            @test result.b == 17
+        end
+        @testset "Scalar - Grey" begin
+            g1 = GreyNumber(100.0, 100.0)
+            k = 30.0
+            g2 = GreyNumber(k, k)
+            @test g1 - k  == g1 - g2
+            @test k - g1  == g2 - g1
+        end  
     end
 
     @testset "Multiplication" begin
@@ -305,3 +335,4 @@ import GreyDecision.GreyNumbers.GreyNumber
     end
     
 end # End of testset GreyNumbers
+
