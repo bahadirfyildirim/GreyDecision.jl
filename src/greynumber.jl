@@ -185,6 +185,11 @@ function Base.sqrt(g::GreyNumber)::GreyNumber
     return g^0.5
 end
 
+function Base.cbrt(g::GreyNumber)::GreyNumber
+    return GreyNumber(cbrt(g.a), cbrt(g.b))
+end
+
+
 function Base.abs(g::GreyNumber)::GreyNumber
     return GreyNumber(abs(g.a), abs(g.b))
 end

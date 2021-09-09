@@ -191,6 +191,18 @@ import GreyDecision.GreyNumbers.GreyNumber
         @test gs.b == 10.0
     end
 
+    @testset "cbrt" begin
+        k = 5.0
+        p = 3.0
+        g = GreyNumber(k * k * k, p * p * p)
+        result = cbrt(g)
+
+        @test result isa GreyNumber
+        @test result.a == p
+        @test result.b == k
+    end
+    
+
     @testset "abs" begin
         @testset "all positive" begin
             g = GreyNumber(4, 5)
