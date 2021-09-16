@@ -32,7 +32,7 @@ function Base.rand(::Type{GreyNumber{T}}, n::Int, m::Int)::Array{GreyNumber{T}, 
 end
 
 
-function Base.rand(::Type{GreyNumber}, n::Int, m::Int)::Array{GreyNumber{Float64}, 1} where {T <: Real}
+function Base.rand(::Type{GreyNumber}, n::Int, m::Int)::Array{GreyNumber{Float64}, 2}
     return rand(GreyNumber{Float64}, n, m)
 end
 
