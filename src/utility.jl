@@ -57,41 +57,66 @@ function rowmeans(data::Array{GreyNumber{T}, 2}) where T <: Real
     return apply_rows(mean, data)
 end
 
-function Base.zero(::Type{GreyNumber{Float64}})
+function Base.zero(::Type{GreyNumber{T}}) where T
+    return GreyNumber(zero(T), zero(T))
+end
+
+function Base.zero(::Type{GreyNumber})
     return GreyNumber(0.0, 0.0)
 end
 
 function Base.zero(g::GreyNumber{T})::GreyNumber{T} where T
     return GreyNumber(zero(T), zero(T))
 end
+                  
 
-
-function Base.zero(::Type{GreyNumber{Int64}})
-    return GreyNumber(0, 0)
-end
-                   
-
-function Base.zeros(::Type{GreyNumber}, n::Int64)::Array{GreyNumber, 1}
-    gs = Array{GreyNumber{Float64}, 1}(undef, n)
+function Base.zeros(::Type{GreyNumber{T}}, n::Int64)::Array{GreyNumber{T}, 1} where T
+    gs = Array{GreyNumber{T}, 1}(undef, n)
     for i in 1:n
-        gs[i] = GreyNumber(0.0, 0.0)
+        gs[i] = GreyNumber(zero(T), zero(T))
     end
     return gs
 end
 
 function Base.zeros(::Type{GreyNumber}, n::Int64, m::Int64)::Array{GreyNumber, 2}
-    gs = Array{GreyNumber{Float64}, 2}(undef, n, m)
-    for i in 1:n
-        for j in 1:m
-            gs[i, j] = GreyNumber(0.0, 0.0)
-        end
-    end
-    return gs
+    zeros(GreyNumber{Float64}, n, m)
 end
 
 function Base.zeros(::Type{GreyNumber}, t::Tuple{Int64, Int64})::Array{GreyNumber, 2}
     zeros(GreyNumber, first(t), last(t))
 end
+
+
+
+
+function Base.one(::Type{GreyNumber{T}}) where T
+    return GreyNumber(one(T), one(T))
+end
+
+function Base.one(::Type{GreyNumber})
+    return GreyNumber(1.0, 1.0)
+end
+
+function Base.one(g::GreyNumber{T})::GreyNumber{T} where T
+    return GreyNumber(one(T), one(T))
+end
+                  
+function Base.ones(::Type{GreyNumber{T}}, n::Int64)::Array{GreyNumber{T}, 1} where T
+    gs = Array{GreyNumber{T}, 1}(undef, n)
+    for i in 1:n
+        gs[i] = GreyNumber(one(T), one(T))
+    end
+    return gs
+end
+
+function Base.ones(::Type{GreyNumber}, n::Int64, m::Int64)::Array{GreyNumber{Float64}, 2}
+    ones(GreyNumber{Float64}, n, m)
+end
+
+function Base.ones(::Type{GreyNumber}, t::Tuple{Int64, Int64})::Array{GreyNumber{Float64}, 2}
+    ones(GreyNumber, first(t), last(t))
+end
+
 
 function Base.isvalid(g::GreyNumber)::Bool
     return g.a <= g.b
