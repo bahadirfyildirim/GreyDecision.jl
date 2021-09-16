@@ -29,4 +29,15 @@ import GreyDecision.GreyNumbers: GreyNumber
         @test last(v[1]) <= 1.0
     end
 
+    @testset "Matrix of random grey numbers" begin
+        v = rand(GreyNumber{Float64}, 10, 20)
+
+        @test size(v) == (10, 20)
+        @test typeof(v[1, 1]) == GreyNumber{Float64}
+        @test first(v[1, 1]) >= 0.0
+        @test last(v[1, 2]) <= 1.0
+        @test first(v[2, 1]) >= 0.0
+        @test last(v[2, 2]) <= 1.0
+    end
+
 end
