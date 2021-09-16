@@ -6,13 +6,19 @@ mean(x) = sum(x) / length(x)
 
 # euclidean(g1, g2) -> GreyNumber ?
 # euclidean(g1, g2) -> Real ?
-function euclidean(g1::GreyNumber{T}, g2::GreyNumber{T})::Float64 where {T<: Number} 
+function euclidean(g1::Array{GreyNumber{T}, 1}, g2::Array{GreyNumber{T}, 1})::GreyNumber where {T <: Real} 
     return (g1 .- g2).^2.0 |> sum |> sqrt
 end
 
-function euclidean(v1::GreyNumber{T})::Float64 where T <: Number
-    v2 = GreyNumber(zero(T), zero(T))
+function euclidean(v1::Array{GreyNumber{T}, 1})::GreyNumber where {T <: Real} 
+    n = length(v1)
+    v2 = map(x -> GreyNumber(zero(T), zero(T)), 1:n)
     return euclidean(v1, v2)
+end
+
+function apply_columns(fs::Array{Function,1}, data::Array{GreyNumber{T},2}) where {T <: Real}
+    _, m = size(data)
+    return [fs[i](data[:,i]) for i in 1:m]
 end
 
 function apply_columns(f::Function, data::Array{GreyNumber{T},2}) where T <: Real
@@ -140,9 +146,28 @@ function makeminmax(fns::Array{K,1} where K)::Array{Function,1}
     return convert(Array{Function,1}, fns)
 end
 
-function weightize(data::Array{GreyNumber{T}, 2}, w::Array{Float64, 1})::Array{GreyNumber, 2} where T
+function normalize(v1::Array{GreyNumber{T},1})::Array{GreyNumber{T},1} where {T <: Real}
+    disttoorigin = euclidean(v1)
+    return map(x -> x / disttoorigin, v1) 
+end
+
+function normalize(datamat::Array{GreyNumber{T},2})::Array{GreyNumber{T},2} where {T <: Real}
+    newdata = similar(datamat)
+    _, p = size(datamat)
+    for i in 1:p
+        newdata[:, i] = normalize(datamat[:, i])
+    end
+    return newdata
+end
+
+function unitize(v::Array{T,1})::Array{Float64,1} where {T <: Number}
+    return v ./ sum(v)
+end
+
+
+function weightize(data::Array{GreyNumber{T}, 2}, w::Array{Float64, 1})::Array{GreyNumber{T}, 2} where {T <: Real}
     n, p = size(data)
-    newdata = Array{GreyNumber{Float64}, 2}(undef, n, p)
+    newdata = Array{GreyNumber{T}, 2}(undef, n, p)
     for i in 1:p
         newdata[:, i] = w[i] .* data[:, i]
     end

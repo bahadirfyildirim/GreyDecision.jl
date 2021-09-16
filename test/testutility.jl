@@ -74,12 +74,13 @@ import GreyDecision.GreyNumbers: GreyNumber
 
     @testset "Euclidean distance" begin
         @testset "Distance to origin" begin
-            @test Utility.euclidean(GreyNumber()) == 0.0        
+            @test Utility.euclidean([GreyNumber(), GreyNumber()]) == GreyNumber(0.0, 0.0)        
         end
         @testset "Distance to two grey numbers" begin
             @test Utility.euclidean(
-                GreyNumber(0.0, 0.0),
-                GreyNumber(0.0, 1.0)) == 1.0        
+                [GreyNumber(0.0, 0.0),GreyNumber(0.0, 1.0)],
+                [GreyNumber(0.0, 0.0),GreyNumber(0.0, 2.0)]
+                ) == GreyNumber(1.0, 2.0)        
         end
     end
 
@@ -240,7 +241,7 @@ import GreyDecision.GreyNumbers: GreyNumber
         result = Utility.weightize(data,  w)
 
         @test size(result) == (3, 3)
-        @test typeof(result) == Array{GreyNumber, 2}
+        @test typeof(result) == Array{GreyNumber{Float64}, 2}
         
         @test result[:,1] == [
             GreyNumber(0.5, 1.0),
