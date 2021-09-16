@@ -1,6 +1,9 @@
 using Test
 using GreyDecision
 
+@info "Testing Random module"
+include("./testrandom.jl")
+
 @info "Testing utility functions"
 include("./testutility.jl")
 
