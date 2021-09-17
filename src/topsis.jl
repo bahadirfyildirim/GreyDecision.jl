@@ -10,7 +10,7 @@ function topsis(decisionMat::Array{GreyNumber{T}, 2}, weights::Array{Float64,1},
 
     normalizedMat = normalize(decisionMat)
 
-    weightednormalizedMat = weightize(normalizedMat, weights)
+    weightednormalizedMat = weightize(normalizedMat, w)
 
     col_max = apply_columns(fns, weightednormalizedMat)
     col_min = apply_columns(reverseminmax(fns), weightednormalizedMat)
@@ -27,6 +27,7 @@ function topsis(decisionMat::Array{GreyNumber{T}, 2}, weights::Array{Float64,1},
 		scores[i] = distances_minus[i] / (distances_minus[i] + distances_plus[i])
     end
 
+    #best_index = sortperm(q) |> last
     return scores
 end
 

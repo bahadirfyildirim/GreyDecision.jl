@@ -14,7 +14,7 @@ GreyNumber(x::T, y::T) where {T<:Real} = GreyNumber{T}(x,y)
 
 GreyNumber()::GreyNumber{Float64} = GreyNumber(0.0, 0.0)
 
-Base.length(g::GreyNumber) = 2
+Base.length(g::GreyNumber) = 1
 
 
 function whitenizate(g::GreyNumber; t::Float64 = 0.5)::Float64
@@ -79,9 +79,9 @@ end
 
 
 function Base.:/(g1::GreyNumber, g2::GreyNumber)::GreyNumber
-    @assert g2.a != 0
-    @assert g2.b != 0
-    @assert g2.a * g2.b > 0
+    #@assert g2.a != 0
+    #@assert g2.b != 0
+    #@assert g2.a * g2.b > 0
     return GreyNumber(
         min(g1.a / g2.a, g1.a / g2.b, g1.b / g2.a, g1.b / g2.b), 
         max(g1.a / g2.a, g1.a / g2.b, g1.b / g2.a, g1.b / g2.b)

@@ -172,6 +172,10 @@ function weightize(data::Array{GreyNumber{T}, 2}, w::Array{Float64, 1})::Array{G
         newdata[:, i] = w[i] .* data[:, i]
     end
     return newdata
-end                                       
+end             
+
+function Base.isapprox(x::GreyNumber{T}, y::GreyNumber{T}; atol::Real=0)::Bool where {T <: Real}
+    return isapprox(first(x), first(y), atol = atol) && isapprox(last(x), last(y), atol = atol)
+end
 
 end # end of module Utility
