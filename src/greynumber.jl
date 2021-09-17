@@ -14,6 +14,8 @@ GreyNumber(x::T, y::T) where {T<:Real} = GreyNumber{T}(x,y)
 
 GreyNumber()::GreyNumber{Float64} = GreyNumber(0.0, 0.0)
 
+GreyNumber(x::T) where {T <: Real} = GreyNumber{T}(x, x)
+
 Base.length(g::GreyNumber) = 1
 
 

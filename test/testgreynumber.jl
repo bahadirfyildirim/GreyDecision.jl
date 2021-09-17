@@ -2,6 +2,13 @@ import GreyDecision.GreyNumbers.GreyNumber
 
 @testset "Grey Numbers" begin
 
+    @testset "Constructor with single argument" begin
+        @test GreyNumber(1.0) == GreyNumber{Float64}(1.0, 1.0)
+        @test GreyNumber(0.0) == GreyNumber{Float64}(0.0, 0.0)
+        @test GreyNumber(1)   == GreyNumber{Int64}(1, 1)
+        @test GreyNumber(0)   == GreyNumber{Int64}(0, 0) 
+    end
+
     @testset "Data structure - Zero Constructor" begin
         g = GreyNumber()
         @test g.a == 0.0
