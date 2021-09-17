@@ -92,9 +92,6 @@ function Base.zeros(::Type{GreyNumber}, t::Tuple{Int64, Int64})::Array{GreyNumbe
     zeros(GreyNumber, first(t), last(t))
 end
 
-
-
-
 function Base.one(::Type{GreyNumber{T}}) where T
     return GreyNumber(one(T), one(T))
 end

@@ -2,6 +2,7 @@ module GreyDecision
 
 include("./greynumber.jl")
 include("./utility.jl")
+include("./stats.jl")
 include("./random.jl")
 include("./topsis.jl")
 include("./vikor.jl")
@@ -18,6 +19,7 @@ import ..NDS: nds
 export GreyNumbers
 export Utility
 export Random
+export Stats 
 
 export GreyNumber
 export topsis, vikor, saw, nds
