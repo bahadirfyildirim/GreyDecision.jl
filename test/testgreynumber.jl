@@ -19,6 +19,10 @@ import GreyDecision.GreyNumbers.GreyNumber
         g = GreyNumber(2.0, 5.0)
         @test g.a == 2.0
         @test g.b == 5.0
+
+        h = GreyNumber(5.0, 2.0)
+        @test g.a == 2.0
+        @test g.b == 5.0
     end
 
     @testset "Whitenization" begin
@@ -38,7 +42,10 @@ import GreyDecision.GreyNumbers.GreyNumber
             g1 = GreyNumber(1, 2)
             g2 = GreyNumber(5, 10)
             greysum = g1 + g2
+            greysum2 = g2 + g1
             @test greysum isa GreyNumber
+            @test greysum2 isa GreyNumber
+            @test greysum == greysum2
             @test greysum.a == 6
             @test greysum.b == 12
         end
@@ -100,7 +107,10 @@ import GreyDecision.GreyNumbers.GreyNumber
         g1 = GreyNumber(3, 4)
         g2 = GreyNumber(5, 10)
         mult = g1 * g2
+        mult2 = g2 * g1
         @test mult isa GreyNumber
+        @test mult2 isa GreyNumber 
+        @test mult == mult2
         @test mult.a == 15
         @test mult.b == 40
     end
