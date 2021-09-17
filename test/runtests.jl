@@ -1,6 +1,9 @@
 using Test
 using GreyDecision
 
+@info "Testing saw"
+include("./testsaw.jl")
+
 @info "Testing Vikor"
 include("./testvikor.jl")
 

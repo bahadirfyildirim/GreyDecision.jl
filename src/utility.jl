@@ -169,7 +169,7 @@ function weightize(data::Array{GreyNumber{T}, 2}, w::Array{Float64, 1})::Array{G
     n, p = size(data)
     newdata = Array{GreyNumber{T}, 2}(undef, n, p)
     for i in 1:p
-        newdata[:, i] = w[i] .* data[:, i]
+        newdata[:, i] = map(x -> w[i] * x, data[:, i])
     end
     return newdata
 end             
