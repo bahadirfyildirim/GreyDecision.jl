@@ -66,6 +66,27 @@ GreyNumber{Float64}(13.0, 17.0)
 
 ### Topsis
 
+```julia
+julia> decmat = [
+               GreyNumber(1.0, 2.0) GreyNumber(2.0, 3.0) GreyNumber(3.0, 4.0);
+               GreyNumber(2.0, 3.0) GreyNumber(1.0, 2.0) GreyNumber(3.0, 4.0);
+               GreyNumber(3.0, 4.0) GreyNumber(2.0, 3.0) GreyNumber(1.0, 2.0);
+           ]; # Decision matrix with Grey Numbers
+
+julia> w = [0.5, 0.4, 0.1]; # Weights
+
+julia> fns = [maximum, maximum, minimum]; # Direction of optimization
+
+julia> scores = topsis(decmat, w, fns)
+3-element Vector{GreyNumber{Float64}}:
+ GreyNumber{Float64}(0.2350699228751952, 0.83613099715003)
+ GreyNumber{Float64}(0.24317523558639148, 1.002942207810138)
+ GreyNumber{Float64}(0.10851899761349458, 1.23913068959885)
+
+ julia> scores |> sortperm |> last # Best strategy is 2nd.
+ 2
+```
+
 ### Simple Additive Weighting (SAW)
 
 ### Vikor
