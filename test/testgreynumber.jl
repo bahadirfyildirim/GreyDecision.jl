@@ -244,6 +244,8 @@ import GreyDecision.GreyNumbers.GreyNumber
         @test GreyNumber(4, 5) < GreyNumber(7, 10)
         @test GreyNumber(4, 5) > GreyNumber(1, 2)
         @test GreyNumber(5, 40) > GreyNumber(4, 5)
+        @test GreyNumber(1, 2) < GreyNumber(1,3)
+        @test GreyNumber(1, 5) > GreyNumber(1,3)
     end
 
     @testset "<= and >=" begin
@@ -251,6 +253,8 @@ import GreyDecision.GreyNumbers.GreyNumber
         @test GreyNumber(4, 5) <= GreyNumber(4, 10)
         @test GreyNumber(4, 5) >= GreyNumber(1, 5)
         @test GreyNumber(5, 40) >= GreyNumber(4, 39)
+        @test GreyNumber(1, 2) <= GreyNumber(1,3)
+        @test GreyNumber(1, 20) >= GreyNumber(1,3)
     end
 
 

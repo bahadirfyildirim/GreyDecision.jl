@@ -107,27 +107,43 @@ function Base.:^(g::GreyNumber, k::T where {T <: Real})::GreyNumber
 end
 
 function Base.isless(g1::GreyNumber, g2::GreyNumber)::Bool
-    @assert g1.a <= g1.b 
-    @assert g2.a <= g2.b
-    return g1.a < g2.a 
+    if g1.a < g2.a 
+        return true
+    elseif g1.a == g2.a 
+        return g1.b < g2.b
+    else
+        return false
+    end
 end
 
 function Base.:≤(g1::GreyNumber, g2::GreyNumber)::Bool
-    @assert g1.a <= g1.b 
-    @assert g2.a <= g2.b
-    return g1.a <= g2.a 
+    if g1.a <= g2.a 
+        return true
+    elseif g1.a == g2.a 
+        return g1.b <= g2.b
+    else
+        return false
+    end
 end
 
 function Base.isgreater(g1::GreyNumber, g2::GreyNumber)::Bool
-    @assert g1.a <= g1.b 
-    @assert g2.a <= g2.b
-    return g1.b > g2.b 
+    if g1.a > g2.a 
+        return true
+    elseif g1.a == g2.a 
+        return g1.b > g2.b
+    else
+        return false
+    end 
 end
 
 function Base.:≥(g1::GreyNumber, g2::GreyNumber)::Bool
-    @assert g1.a <= g1.b 
-    @assert g2.a <= g2.b
-    return g1.b >= g2.b 
+    if g1.a >= g2.a 
+        return true
+    elseif g1.a == g2.a 
+        return g1.b >= g2.b
+    else
+        return false
+    end 
 end
 
 function Base.isequal(g1::GreyNumber, g2::GreyNumber)::Bool
