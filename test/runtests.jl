@@ -1,6 +1,9 @@
 using Test
 using GreyDecision
 
+@info "Testing Moora"
+include("./testmoora.jl")
+
 # Testing Core Library
 @info "Testing Grey Numbers and their operations"
 include("./testgreynumber.jl")
