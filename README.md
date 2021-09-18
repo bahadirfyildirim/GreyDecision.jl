@@ -91,3 +91,9 @@ julia> scores = topsis(decmat, w, fns)
 
 ### Vikor
 
+### Non-dominated sorting
+
+### Moora
+
+
+
