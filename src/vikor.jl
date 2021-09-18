@@ -46,7 +46,7 @@ function vikor(decisionMat::Array{GreyNumber{T}, 2}, weights::Array{Float64,1}, 
     ranger = (rmax - rmin)
     for i in 1:nalternatives
         #q = v .* ((s .- smin ./ (smax - smin))) .+ (1 - v) .* ((r .- rmin ./ (rmax - rmin)))
-        q[i] = v * ((s[i] - smin) / ranges) + (1.0-v) * ((r[i] - rmin) / ranger)
+        q[i] = v * (s[i] - smin / ranges) + (1.0-v) * (r[i] - rmin / ranger)
     end
 
     best_index = sortperm(q) |> first

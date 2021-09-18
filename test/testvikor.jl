@@ -24,9 +24,9 @@ import GreyDecision.Vikor: vikor
 
     @test vikorresult[:bestindex] == 4
     
-    @test isapprox(vikorresult[:scores][1], GreyNumber(0.7489, 0.7489), atol=tol)
-    @test isapprox(vikorresult[:scores][2], GreyNumber(0.7332,0.73320), atol=tol)
-    @test isapprox(vikorresult[:scores][3], GreyNumber(1.0,1.0), atol=tol)
-    @test isapprox(vikorresult[:scores][4], GreyNumber(0.0,0.0), atol=tol) 
+    @test isapprox(vikorresult[:scores][1], GreyNumber(0.1975012087551764, 0.1975012087551764), atol=tol)
+    @test isapprox(vikorresult[:scores][2], GreyNumber(0.2194064473270817, 0.2194064473270817), atol=tol)
+    @test isapprox(vikorresult[:scores][3], GreyNumber(0.3507643203516215, 0.3507643203516215), atol=tol)
+    @test isapprox(vikorresult[:scores][4], GreyNumber(-0.16727341435277993, -0.16727341435277993), atol=tol) 
 
 end
