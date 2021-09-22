@@ -16,6 +16,17 @@ GreyNumber()::GreyNumber{Float64} = GreyNumber(0.0, 0.0)
 
 GreyNumber(x::T) where {T <: Real} = GreyNumber{T}(x, x)
 
+GreyNumber{T}(x::GreyNumber{T}) where {T <: Real} = GreyNumber{T}(x.a, x.b)
+
+GreyNumber{T}(x::Bool)  where {T <: Real}= GreyNumber(Float64(x), Float64(x))
+
+
+Base.transpose(x::GreyNumber{T}) where {T <: Real} = x
+
+Base.adjoint(x::GreyNumber{Float64}) where {T <: Real} = x
+
+Base.copy(x::GreyNumber{T}) where {T <: Real} = GreyNumber{T}(x.a, x.b)
+
 Base.length(g::GreyNumber) = 1
 
 
@@ -73,10 +84,9 @@ function Base.:*(g1::GreyNumber, k::T where {T <: Number})::GreyNumber
 end
 
 function Base.inv(g::GreyNumber)::GreyNumber
-    @assert g.a > 0
-    @assert g.b > 0
-    @assert g.a <= g.b
-    return GreyNumber(inv(g.b), inv(g.a))
+    newa = min(inv(g.a), inv(g.b))
+    newb = max(inv(g.a), inv(g.b))
+    return GreyNumber(newa, newb)
 end
 
 
