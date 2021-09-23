@@ -91,11 +91,32 @@ julia> scores = topsis(decmat, w, fns)
 
 ### Simple Additive Weighting (SAW)
 
+```julia
+julia> saw(decmat, w, fns)
+Dict{Symbol, Any} with 3 entries:
+  :scores    => GreyNumber{Float64}[GreyNumber{Float64}(0.416667, 1.0), GreyNumber{Float64}(0.408333, 0.966667), GreyN…
+  :bestindex => 3
+  :rankings  => [3, 1, 2]
+```
+
 ### Vikor
+```julia
+julia> vikor(decmat, w, fns)
+Dict{Symbol, Any} with 2 entries:
+  :scores    => GreyNumber{Float64}[GreyNumber{Float64}(NaN, NaN), GreyNumber{Float64}(NaN, NaN), GreyNumber{Float64}(…
+  :bestindex => 1
+```
 
 ### Non-dominated sorting
 
 ### Moora
+
+```julia
+julia> moora(decmat, w, fns)
+Dict{Symbol, Any} with 2 entries:
+  :scores    => GreyNumber{Float64}[GreyNumber{Float64}(0.0112818, 0.441675), GreyNumber{Float64}(-0.0750996, -0.00411…
+  :bestindex => 2
+```
 
 ### Electre
 
