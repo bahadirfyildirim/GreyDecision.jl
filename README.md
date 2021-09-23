@@ -64,6 +64,8 @@ GreyNumber{Float64}(13.0, 17.0)
 
 ## Grey Decision Analysis
 
+List and examples for implemented methods
+
 ### Topsis
 
 ```julia
@@ -95,5 +97,6 @@ julia> scores = topsis(decmat, w, fns)
 
 ### Moora
 
+### Electre
 
 

@@ -9,6 +9,7 @@ include("./vikor.jl")
 include("./saw.jl")
 include("./nds.jl")
 include("./moora.jl")
+include("./electre.jl")
 
 import ..GreyNumbers: GreyNumber
 import ..Topsis: topsis
@@ -16,7 +17,7 @@ import ..Vikor: vikor
 import ..Saw: saw
 import ..NDS: nds 
 import ..Moora: moora
-
+import ..Electre: electre
 
 export GreyNumbers
 export Utility
@@ -24,6 +25,6 @@ export Random
 export Stats 
 
 export GreyNumber
-export topsis, vikor, saw, nds, moora
+export topsis, vikor, saw, nds, moora, electre
 
 end # module GreyDecision

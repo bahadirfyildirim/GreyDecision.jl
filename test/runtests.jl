@@ -1,7 +1,6 @@
 using Test
 using GreyDecision
 
-
 # Testing Core Library
 @info "Testing Grey Numbers and their operations"
 include("./testgreynumber.jl")
@@ -35,6 +34,8 @@ include("./testnds.jl")
 @info "Testing Moora"
 include("./testmoora.jl")
 
+@info "Testing electre"
+include("./testelectre.jl")
 
 
 
