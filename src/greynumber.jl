@@ -236,6 +236,9 @@ function Base.last(g::GreyNumber{T})::T where T
 end
 
 
+function kernel(g::GreyNumber)::Float64
+    return (g.a + g.b) / 2.0
+end
 
 
 end # end of module GreyNumbers

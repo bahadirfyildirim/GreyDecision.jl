@@ -1,6 +1,11 @@
 import GreyDecision.GreyNumbers.GreyNumber
+import GreyDecision.GreyNumbers.kernel 
 
 @testset "Grey Numbers" begin
+
+    @testset "Kernel" begin
+        @test kernel(GreyNumber(0.0, 10.0)) == 5.0
+    end
 
     @testset "Constructor with single argument" begin
         @test GreyNumber(1.0) == GreyNumber{Float64}(1.0, 1.0)

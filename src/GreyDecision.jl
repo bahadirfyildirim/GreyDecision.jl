@@ -11,7 +11,7 @@ include("./nds.jl")
 include("./moora.jl")
 include("./electre.jl")
 
-import ..GreyNumbers: GreyNumber
+import ..GreyNumbers: GreyNumber, kernel
 import ..Topsis: topsis
 import ..Vikor: vikor
 import ..Saw: saw
