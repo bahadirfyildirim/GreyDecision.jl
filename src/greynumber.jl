@@ -67,9 +67,10 @@ end
 
 
 function Base.:*(g1::GreyNumber, g2::GreyNumber)::GreyNumber
+    v = [g1.a * g2.a, g1.a * g2.b, g1.b * g2.a, g1.b * g2.b]
     return GreyNumber(
-        min(g1.a * g2.a, g1.a * g2.b, g1.b * g2.a, g1.b * g2.b),
-        max(g1.a * g2.a, g1.a * g2.b, g1.b * g2.a, g1.b * g2.b),
+        min(v),
+        max(v),
     )
 end
 
@@ -94,9 +95,10 @@ function Base.:/(g1::GreyNumber, g2::GreyNumber)::GreyNumber
     #@assert g2.a != 0
     #@assert g2.b != 0
     #@assert g2.a * g2.b > 0
+    v = [g1.a / g2.a, g1.a / g2.b, g1.b / g2.a, g1.b / g2.b]
     return GreyNumber(
-        min(g1.a / g2.a, g1.a / g2.b, g1.b / g2.a, g1.b / g2.b), 
-        max(g1.a / g2.a, g1.a / g2.b, g1.b / g2.a, g1.b / g2.b)
+        min(v), 
+        max(v)
     )
 end
 
